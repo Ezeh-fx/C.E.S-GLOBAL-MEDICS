@@ -96,10 +96,10 @@ const PaymentDetailModal: React.FC<PaymentDetailModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-3xl sm:max-w-4xl max-h-[90vh] overflow-y-auto p-4 sm:p-6">
         <DialogHeader>
           <div className="flex justify-between items-center">
-            <DialogTitle className="text-2xl font-bold">Payment Request Details</DialogTitle>
+            <DialogTitle className="text-xl sm:text-2xl font-bold">Payment Request Details</DialogTitle>
             <Button
               variant="ghost"
               size="sm"
@@ -140,7 +140,7 @@ const PaymentDetailModal: React.FC<PaymentDetailModalProps> = ({
           </motion.div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mt-4 sm:mt-6">
           {/* Payment Info Card */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -149,44 +149,44 @@ const PaymentDetailModal: React.FC<PaymentDetailModalProps> = ({
           >
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
                   <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
-                    <CreditCard className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                    <CreditCard className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   Payment Information
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
+              <CardContent className="space-y-3 sm:space-y-4">
+                <div className="space-y-2 sm:space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Session Number:</span>
-                    <span className="font-mono text-sm">{payment.sessionNumber}</span>
+                    <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Session Number:</span>
+                    <span className="font-mono text-xs sm:text-sm">{payment.sessionNumber}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Payment ID:</span>
-                    <span className="font-mono text-sm">#{payment._id}</span>
+                    <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Payment ID:</span>
+                    <span className="font-mono text-xs sm:text-sm">#{payment._id}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Status:</span>
-                    <Badge className={getStatusColor(payment.paymentStatus)}>
+                    <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Status:</span>
+                    <Badge className={`text-xs ${getStatusColor(payment.paymentStatus)}`}>
                       {payment.paymentStatus}
                     </Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Total Amount:</span>
-                    <span className="font-semibold text-lg">
+                    <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Total Amount:</span>
+                    <span className="font-semibold text-base sm:text-lg">
                       ₦{payment.totalAmount?.toLocaleString()}
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Created:</span>
-                    <span className="text-sm">
+                    <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Created:</span>
+                    <span className="text-xs sm:text-sm">
                       {payment.createdAt ? new Date(payment.createdAt).toLocaleDateString() : "-"}
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Updated:</span>
-                    <span className="text-sm">
+                    <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Updated:</span>
+                    <span className="text-xs sm:text-sm">
                       {payment.updatedAt ? new Date(payment.updatedAt).toLocaleDateString() : "-"}
                     </span>
                   </div>
@@ -196,8 +196,8 @@ const PaymentDetailModal: React.FC<PaymentDetailModalProps> = ({
                   <>
                     <Separator />
                     <div>
-                      <span className="text-sm font-medium">Notes:</span>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      <span className="text-xs sm:text-sm font-medium">Notes:</span>
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">
                         {payment.notes}
                       </p>
                     </div>
@@ -215,9 +215,9 @@ const PaymentDetailModal: React.FC<PaymentDetailModalProps> = ({
           >
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
                   <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                    <User className="w-5 h-5 text-green-600 dark:text-green-400" />
+                    <User className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 dark:text-green-400" />
                   </div>
                   Customer Information
                 </CardTitle>
@@ -226,15 +226,15 @@ const PaymentDetailModal: React.FC<PaymentDetailModalProps> = ({
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <User className="w-4 h-4 text-gray-500" />
-                    <span className="font-medium">{customer.fullName}</span>
+                    <span className="font-medium text-sm sm:text-base">{customer.fullName}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-gray-500" />
-                    <span className="text-sm">{customer.email}</span>
+                    <span className="text-xs sm:text-sm">{customer.email}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CreditCard className="w-4 h-4 text-gray-500" />
-                    <span className="text-sm">{customer.phone}</span>
+                    <span className="text-xs sm:text-sm">{customer.phone}</span>
                   </div>
                 </div>
               </CardContent>
@@ -247,13 +247,13 @@ const PaymentDetailModal: React.FC<PaymentDetailModalProps> = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-6"
+          className="mt-4 sm:mt-6"
         >
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
                 <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                  <Package className="w-5 h-5 text-orange-600 dark:text-orange-400" />
+                  <Package className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600 dark:text-orange-400" />
                 </div>
                 Order Items ({items.length})
               </CardTitle>
@@ -263,11 +263,11 @@ const PaymentDetailModal: React.FC<PaymentDetailModalProps> = ({
                 <table className="w-full">
                   <thead>
                     <tr className="border-b dark:border-gray-700">
-                      <th className="text-left py-3 px-4 font-medium text-gray-500 dark:text-gray-400">Product</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-500 dark:text-gray-400">Brand</th>
-                      <th className="text-right py-3 px-4 font-medium text-gray-500 dark:text-gray-400">Qty</th>
-                      <th className="text-right py-3 px-4 font-medium text-gray-500 dark:text-gray-400">Price</th>
-                      <th className="text-right py-3 px-4 font-medium text-gray-500 dark:text-gray-400">Subtotal</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-medium text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Product</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-medium text-gray-500 dark:text-gray-400 text-xs sm:text-sm hidden sm:table-cell">Brand</th>
+                      <th className="text-right py-2 sm:py-3 px-2 sm:px-4 font-medium text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Qty</th>
+                      <th className="text-right py-2 sm:py-3 px-2 sm:px-4 font-medium text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Price</th>
+                      <th className="text-right py-2 sm:py-3 px-2 sm:px-4 font-medium text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Subtotal</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -279,26 +279,26 @@ const PaymentDetailModal: React.FC<PaymentDetailModalProps> = ({
                         transition={{ duration: 0.3, delay: idx * 0.05 }}
                         className="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50"
                       >
-                        <td className="py-4 px-4">
+                        <td className="py-2 sm:py-4 px-2 sm:px-4">
                           <div>
-                            <div className="font-medium text-gray-900 dark:text-white">
+                            <div className="font-medium text-gray-900 dark:text-white text-xs sm:text-sm">
                               {item.product?.productName || "-"}
                             </div>
-                            <div className="text-sm text-gray-500 dark:text-gray-400">
+                            <div className="text-xs text-gray-500 dark:text-gray-400">
                               {item.product?.category}
                             </div>
                           </div>
                         </td>
-                        <td className="py-4 px-4 text-gray-900 dark:text-white">
+                        <td className="py-2 sm:py-4 px-2 sm:px-4 text-gray-900 dark:text-white text-xs sm:text-sm hidden sm:table-cell">
                           {item.brandName}
                         </td>
-                        <td className="py-4 px-4 text-right text-gray-900 dark:text-white">
+                        <td className="py-2 sm:py-4 px-2 sm:px-4 text-right text-gray-900 dark:text-white text-xs sm:text-sm">
                           {item.quantity}
                         </td>
-                        <td className="py-4 px-4 text-right text-gray-900 dark:text-white">
+                        <td className="py-2 sm:py-4 px-2 sm:px-4 text-right text-gray-900 dark:text-white text-xs sm:text-sm">
                           ₦{item.price?.toLocaleString()}
                         </td>
-                        <td className="py-4 px-4 text-right font-semibold text-gray-900 dark:text-white">
+                        <td className="py-2 sm:py-4 px-2 sm:px-4 text-right font-semibold text-gray-900 dark:text-white text-xs sm:text-sm">
                           ₦{(item.price * item.quantity)?.toLocaleString()}
                         </td>
                       </motion.tr>
@@ -315,13 +315,13 @@ const PaymentDetailModal: React.FC<PaymentDetailModalProps> = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-6"
+          className="mt-4 sm:mt-6"
         >
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
                 <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
-                  <Eye className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                  <Eye className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600 dark:text-purple-400" />
                 </div>
                 Proof of Payment
               </CardTitle>
@@ -333,7 +333,7 @@ const PaymentDetailModal: React.FC<PaymentDetailModalProps> = ({
                     <img
                       src={payment.paymentProof}
                       alt="Payment Proof"
-                      className="w-64 h-64 object-contain border rounded-lg bg-gray-50 dark:bg-gray-800"
+                      className="w-48 h-48 sm:w-64 sm:h-64 object-contain border rounded-lg bg-gray-50 dark:bg-gray-800"
                     />
                     <Button
                       variant="outline"
@@ -349,7 +349,7 @@ const PaymentDetailModal: React.FC<PaymentDetailModalProps> = ({
               ) : (
                 <div className="text-center py-8 text-gray-500 dark:text-gray-400">
                   <Eye className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                  <p>No proof of payment uploaded</p>
+                  <p className="text-sm">No proof of payment uploaded</p>
                 </div>
               )}
             </CardContent>
@@ -362,14 +362,14 @@ const PaymentDetailModal: React.FC<PaymentDetailModalProps> = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-6 space-y-4"
+            className="mt-4 sm:mt-6 space-y-4"
           >
             <Card>
               <CardHeader>
-                <CardTitle>Payment Actions</CardTitle>
+                <CardTitle className="text-sm sm:text-base">Payment Actions</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Button
                     onClick={handleApprove}
                     disabled={loading}

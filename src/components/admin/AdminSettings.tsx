@@ -165,11 +165,11 @@ const AdminSettings = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="space-y-6"
+      className="space-y-4 sm:space-y-6"
     >
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+      <div className="mb-4 sm:mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
           Settings
         </h1>
         <p className="text-gray-600 dark:text-gray-400">
@@ -208,7 +208,7 @@ const AdminSettings = () => {
         </motion.div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* Admin Information */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -217,31 +217,31 @@ const AdminSettings = () => {
         >
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
                 <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
-                  <User className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                  <User className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 dark:text-blue-400" />
                 </div>
                 Admin Information
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-xs sm:text-sm">
                 Update your personal admin account details
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3 sm:space-y-4">
               <div>
-                <Label htmlFor="adminName">Full Name</Label>
+                <Label htmlFor="adminName" className="text-xs sm:text-sm">Full Name</Label>
                 <Input
                   id="adminName"
                   value={adminInfo.name}
                   disabled={true} // Admin name is not editable
                   onChange={(e) => handleAdminInfoChange("name", e.target.value)}
-                  className="bg-gray-50 dark:bg-gray-800"
+                  className="bg-gray-50 dark:bg-gray-800 text-xs sm:text-sm"
                 />
               </div>
               <div className="relative">
                 <Label
                   htmlFor="adminEmail"
-                  className="flex justify-between items-center"
+                  className="flex justify-between items-center text-xs sm:text-sm"
                 >
                   Email
                   <Button
@@ -260,12 +260,13 @@ const AdminSettings = () => {
                   value={adminInfo.email}
                   disabled={!isEmailEditable}
                   onChange={(e) => handleAdminInfoChange("email", e.target.value)}
+                  className="text-xs sm:text-sm"
                 />
               </div>
 
               {isEmailEditable && (
                 <div className="relative">
-                  <Label htmlFor="currentPassword">Current Password</Label>
+                  <Label htmlFor="currentPassword" className="text-xs sm:text-sm">Current Password</Label>
                   <div className="relative">
                     <Input
                       id="currentPassword"
@@ -273,6 +274,7 @@ const AdminSettings = () => {
                       value={currentPassword}
                       onChange={(e) => setCurrentPassword(e.target.value)}
                       placeholder="Enter current password"
+                      className="text-xs sm:text-sm"
                     />
                     <Button
                       type="button"
@@ -292,23 +294,23 @@ const AdminSettings = () => {
               )}
 
               <div>
-                <Label htmlFor="adminPhone">Phone Number</Label>
+                <Label htmlFor="adminPhone" className="text-xs sm:text-sm">Phone Number</Label>
                 <Input
                   id="adminPhone"
                   type="tel"
                   value={adminInfo.phone}
                   disabled={true} // Phone number is not editable
                   onChange={(e) => handleAdminInfoChange("phone", e.target.value)}
-                  className="bg-gray-50 dark:bg-gray-800"
+                  className="bg-gray-50 dark:bg-gray-800 text-xs sm:text-sm"
                 />
               </div>
               <div>
-                <Label htmlFor="adminRole">Role</Label>
+                <Label htmlFor="adminRole" className="text-xs sm:text-sm">Role</Label>
                 <Input
                   id="adminRole"
                   value={adminInfo.role}
                   disabled
-                  className="bg-gray-50 dark:bg-gray-800"
+                  className="bg-gray-50 dark:bg-gray-800 text-xs sm:text-sm"
                 />
               </div>
             </CardContent>
@@ -323,34 +325,35 @@ const AdminSettings = () => {
         >
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
                 <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                  <Building2 className="w-5 h-5 text-green-600 dark:text-green-400" />
+                  <Building2 className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 dark:text-green-400" />
                 </div>
                 Store Information
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-xs sm:text-sm">
                 Manage your store details and contact information
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3 sm:space-y-4">
               {[
                 ["storeName", "Store Name"],
                 ["storeEmail", "Store Email"],
                 ["storePhone", "Store Phone"],
               ].map(([field, label]) => (
                 <div key={field}>
-                  <Label htmlFor={field}>{label}</Label>
+                  <Label htmlFor={field} className="text-xs sm:text-sm">{label}</Label>
                   <Input
                     id={field}
                     value={storeInfo[field as keyof typeof storeInfo]}
                     disabled={!isStoreEditable}
                     onChange={(e) => handleStoreInfoChange(field, e.target.value)}
+                    className="text-xs sm:text-sm"
                   />
                 </div>
               ))}
               <div>
-                <Label htmlFor="storeDescription">Description</Label>
+                <Label htmlFor="storeDescription" className="text-xs sm:text-sm">Description</Label>
                 <Textarea
                   id="storeDescription"
                   rows={2}
@@ -360,10 +363,11 @@ const AdminSettings = () => {
                   }
                   disabled={!isStoreEditable}
                   placeholder="Enter store description..."
+                  className="text-xs sm:text-sm"
                 />
               </div>
               <div>
-                <Label htmlFor="storeAddress">Address</Label>
+                <Label htmlFor="storeAddress" className="text-xs sm:text-sm">Address</Label>
                 <Textarea
                   id="storeAddress"
                   rows={2}
@@ -373,6 +377,7 @@ const AdminSettings = () => {
                   }
                   disabled={!isStoreEditable}
                   placeholder="Enter store address..."
+                  className="text-xs sm:text-sm"
                 />
               </div>
               <div className="flex justify-end">
@@ -380,6 +385,7 @@ const AdminSettings = () => {
                   variant="outline"
                   size="sm"
                   onClick={() => setIsStoreEditable(!isStoreEditable)}
+                  className="text-xs"
                 >
                   {isStoreEditable ? "Cancel" : "Edit Store Info"}
                 </Button>
@@ -397,18 +403,18 @@ const AdminSettings = () => {
         >
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
                 <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
-                  <CreditCard className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                  <CreditCard className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600 dark:text-purple-400" />
                 </div>
                 Payment Information
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-xs sm:text-sm">
                 Bank details for customer payments
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <CardContent className="space-y-3 sm:space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {[
                   ["bankName", "Bank Name"],
                   ["accountName", "Account Name"],
@@ -416,7 +422,7 @@ const AdminSettings = () => {
                   ["sortCode", "Sort Code"],
                 ].map(([field, label]) => (
                   <div key={field}>
-                    <Label htmlFor={field}>{label}</Label>
+                    <Label htmlFor={field} className="text-xs sm:text-sm">{label}</Label>
                     <Input
                       id={field}
                       value={paymentInfo[field as keyof typeof paymentInfo]}
@@ -425,6 +431,7 @@ const AdminSettings = () => {
                       }
                       disabled={!isPaymentEditable}
                       placeholder={`Enter ${label.toLowerCase()}`}
+                      className="text-xs sm:text-sm"
                     />
                   </div>
                 ))}
@@ -434,6 +441,7 @@ const AdminSettings = () => {
                   variant="outline"
                   size="sm"
                   onClick={() => setIsPaymentEditable(!isPaymentEditable)}
+                  className="text-xs"
                 >
                   {isPaymentEditable ? "Cancel" : "Edit Payment Info"}
                 </Button>

@@ -202,10 +202,10 @@ const AdminDashboard = () => {
             onClick={() => setSidebarOpen(false)}
           />
           <motion.div 
-            className="fixed inset-y-0 left-0 flex w-64 flex-col bg-white dark:bg-gray-800"
-            initial={{ x: -256 }}
+            className="fixed inset-y-0 left-0 flex w-80 flex-col bg-white dark:bg-gray-800"
+            initial={{ x: -320 }}
             animate={{ x: 0 }}
-            exit={{ x: -256 }}
+            exit={{ x: -320 }}
             transition={{ duration: 0.3 }}
           >
             <div className="flex h-16 items-center justify-between px-4">
@@ -221,7 +221,7 @@ const AdminDashboard = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                  className={`flex items-center px-4 py-3 text-sm font-medium rounded-md transition-colors ${
                     isActiveRoute(item.href)
                       ? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
                       : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -236,7 +236,7 @@ const AdminDashboard = () => {
             <div className="p-4 border-t dark:border-gray-700">
               <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <button className="flex items-center w-full px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors">
+                  <button className="flex items-center w-full px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors">
                     <LogOut className="mr-3 h-5 w-5" />
                     Logout
                   </button>
@@ -329,7 +329,7 @@ const AdminDashboard = () => {
           </div>
 
           {/* Page content */}
-          <main className="p-6">
+          <main className="p-4 sm:p-6">
             <Routes>
               <Route
                 path="/"
@@ -340,7 +340,7 @@ const AdminDashboard = () => {
                     transition={{ duration: 0.5 }}
                   >
                     <div className="mb-6">
-                      <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+                      <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
                         Dashboard Overview
                       </h1>
                       <p className="text-gray-600 dark:text-gray-400">
@@ -348,7 +348,7 @@ const AdminDashboard = () => {
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
                       {stats.map((stat, index) => (
                         <motion.div
                           key={stat.name}
@@ -358,17 +358,17 @@ const AdminDashboard = () => {
                         >
                           <Card>
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                              <CardTitle className="text-sm font-medium">
+                              <CardTitle className="text-xs sm:text-sm font-medium">
                                 {stat.name}
                               </CardTitle>
                               <stat.icon className="h-4 w-4 text-muted-foreground" />
                             </CardHeader>
                             <CardContent>
-                              <div className="text-2xl font-bold">
+                              <div className="text-lg sm:text-2xl font-bold">
                                 {!dashboardStats ? (
                                   <div className="flex items-center space-x-2">
                                     <Loader2 className="w-4 h-4 animate-spin" />
-                                    <span>Loading...</span>
+                                    <span className="text-sm">Loading...</span>
                                   </div>
                                 ) : (
                                   stat.value
@@ -376,7 +376,7 @@ const AdminDashboard = () => {
                               </div>
                               <Badge 
                                 variant={stat.changeType === "positive" ? "default" : "destructive"}
-                                className="mt-1"
+                                className="mt-1 text-xs"
                               >
                                 {stat.change}
                               </Badge>
@@ -386,7 +386,7 @@ const AdminDashboard = () => {
                       ))}
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                       <Card>
                         <CardHeader>
                           <CardTitle>Recent Activity</CardTitle>

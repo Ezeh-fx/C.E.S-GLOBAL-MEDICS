@@ -110,10 +110,10 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl sm:max-w-6xl max-h-[90vh] overflow-y-auto p-4 sm:p-6">
         <DialogHeader>
           <div className="flex justify-between items-center">
-            <DialogTitle className="text-2xl font-bold">Order Details</DialogTitle>
+            <DialogTitle className="text-xl sm:text-2xl font-bold">Order Details</DialogTitle>
             <Button
               variant="ghost"
               size="sm"
@@ -154,9 +154,9 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
           </motion.div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mt-4 sm:mt-6">
           {/* Order & Customer Info */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {/* Order Info Card */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -165,34 +165,34 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
             >
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
                     <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
-                      <Package className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                      <Package className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 dark:text-blue-400" />
                     </div>
                     Order Information
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3 sm:space-y-4">
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600 dark:text-gray-400">Order ID:</span>
-                      <span className="font-mono text-sm">#{order._id}</span>
+                      <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Order ID:</span>
+                      <span className="font-mono text-xs sm:text-sm">#{order._id}</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600 dark:text-gray-400">Date:</span>
-                      <span className="text-sm">
+                      <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Date:</span>
+                      <span className="text-xs sm:text-sm">
                         {order.createdAt ? new Date(order.createdAt).toLocaleDateString() : "-"}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600 dark:text-gray-400">Total:</span>
-                      <span className="font-semibold text-lg">
+                      <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Total:</span>
+                      <span className="font-semibold text-base sm:text-lg">
                         ₦{order.totalAmount?.toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600 dark:text-gray-400">Shipping:</span>
-                      <span className="font-semibold">
+                      <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Shipping:</span>
+                      <span className="font-semibold text-xs sm:text-sm">
                         ₦{order.shippingFee?.toLocaleString()}
                       </span>
                     </div>
@@ -202,12 +202,12 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
 
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium">Status:</span>
+                      <span className="text-xs sm:text-sm font-medium">Status:</span>
                       <div className="flex items-center gap-2">
-                        <Badge className={getStatusColor(status)}>{status}</Badge>
+                        <Badge className={`text-xs ${getStatusColor(status)}`}>{status}</Badge>
                         {canEditStatus && (
                           <Select value={status} onValueChange={handleStatusChange}>
-                            <SelectTrigger className="w-32 h-8">
+                            <SelectTrigger className="w-24 sm:w-32 h-8">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
@@ -223,8 +223,8 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium">Payment:</span>
-                      <Badge className={getPaymentStatusColor(order.paymentStatus)}>
+                      <span className="text-xs sm:text-sm font-medium">Payment:</span>
+                      <Badge className={`text-xs ${getPaymentStatusColor(order.paymentStatus)}`}>
                         {order.paymentStatus}
                       </Badge>
                     </div>
@@ -259,9 +259,9 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
             >
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
                     <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                      <User className="w-5 h-5 text-green-600 dark:text-green-400" />
+                      <User className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 dark:text-green-400" />
                     </div>
                     Customer Information
                   </CardTitle>
@@ -270,19 +270,19 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
                       <User className="w-4 h-4 text-gray-500" />
-                      <span className="font-medium">{customer.fullName}</span>
+                      <span className="font-medium text-sm sm:text-base">{customer.fullName}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Mail className="w-4 h-4 text-gray-500" />
-                      <span className="text-sm">{customer.email}</span>
+                      <span className="text-xs sm:text-sm">{customer.email}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Phone className="w-4 h-4 text-gray-500" />
-                      <span className="text-sm">{customer.phone}</span>
+                      <span className="text-xs sm:text-sm">{customer.phone}</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <MapPin className="w-4 h-4 text-gray-500 mt-0.5" />
-                      <div className="text-sm">
+                      <div className="text-xs sm:text-sm">
                         <div>{customer.address}</div>
                         <div className="text-gray-500">
                           {customer.city}, {customer.state} {customer.zipCode}
@@ -302,9 +302,9 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
             >
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
                     <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
-                      <Truck className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                      <Truck className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600 dark:text-purple-400" />
                     </div>
                     Delivery Information
                   </CardTitle>
@@ -313,15 +313,15 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
                       <User className="w-4 h-4 text-gray-500" />
-                      <span className="font-medium">{delivery.fullName}</span>
+                      <span className="font-medium text-sm sm:text-base">{delivery.fullName}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Phone className="w-4 h-4 text-gray-500" />
-                      <span className="text-sm">{delivery.phone}</span>
+                      <span className="text-xs sm:text-sm">{delivery.phone}</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <MapPin className="w-4 h-4 text-gray-500 mt-0.5" />
-                      <div className="text-sm">
+                      <div className="text-xs sm:text-sm">
                         <div>{delivery.address}</div>
                         <div className="text-gray-500">
                           {delivery.city}, {delivery.state} {delivery.zipCode}
@@ -332,7 +332,7 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
                       </div>
                     </div>
                     {delivery.deliveryInstructions && (
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                      <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                         <div className="font-medium">Instructions:</div>
                         <div>{delivery.deliveryInstructions}</div>
                       </div>
@@ -352,9 +352,9 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
           >
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
                   <div className="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
-                    <Package className="w-5 h-5 text-orange-600 dark:text-orange-400" />
+                    <Package className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600 dark:text-orange-400" />
                   </div>
                   Order Items ({items.length})
                 </CardTitle>
@@ -364,11 +364,11 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
                   <table className="w-full">
                     <thead>
                       <tr className="border-b dark:border-gray-700">
-                        <th className="text-left py-3 px-4 font-medium text-gray-500 dark:text-gray-400">Product</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-500 dark:text-gray-400">Brand</th>
-                        <th className="text-right py-3 px-4 font-medium text-gray-500 dark:text-gray-400">Qty</th>
-                        <th className="text-right py-3 px-4 font-medium text-gray-500 dark:text-gray-400">Price</th>
-                        <th className="text-right py-3 px-4 font-medium text-gray-500 dark:text-gray-400">Subtotal</th>
+                        <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-medium text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Product</th>
+                        <th className="text-left py-2 sm:py-3 px-2 sm:px-4 font-medium text-gray-500 dark:text-gray-400 text-xs sm:text-sm hidden sm:table-cell">Brand</th>
+                        <th className="text-right py-2 sm:py-3 px-2 sm:px-4 font-medium text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Qty</th>
+                        <th className="text-right py-2 sm:py-3 px-2 sm:px-4 font-medium text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Price</th>
+                        <th className="text-right py-2 sm:py-3 px-2 sm:px-4 font-medium text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Subtotal</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -380,26 +380,26 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
                           transition={{ duration: 0.3, delay: idx * 0.05 }}
                           className="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50"
                         >
-                          <td className="py-4 px-4">
+                          <td className="py-2 sm:py-4 px-2 sm:px-4">
                             <div>
-                              <div className="font-medium text-gray-900 dark:text-white">
+                              <div className="font-medium text-gray-900 dark:text-white text-xs sm:text-sm">
                                 {item.product?.productName || "-"}
                               </div>
-                              <div className="text-sm text-gray-500 dark:text-gray-400">
+                              <div className="text-xs text-gray-500 dark:text-gray-400">
                                 {item.product?.category}
                               </div>
                             </div>
                           </td>
-                          <td className="py-4 px-4 text-gray-900 dark:text-white">
+                          <td className="py-2 sm:py-4 px-2 sm:px-4 text-gray-900 dark:text-white text-xs sm:text-sm hidden sm:table-cell">
                             {item.brandName}
                           </td>
-                          <td className="py-4 px-4 text-right text-gray-900 dark:text-white">
+                          <td className="py-2 sm:py-4 px-2 sm:px-4 text-right text-gray-900 dark:text-white text-xs sm:text-sm">
                             {item.quantity}
                           </td>
-                          <td className="py-4 px-4 text-right text-gray-900 dark:text-white">
+                          <td className="py-2 sm:py-4 px-2 sm:px-4 text-right text-gray-900 dark:text-white text-xs sm:text-sm">
                             ₦{item.price?.toLocaleString()}
                           </td>
-                          <td className="py-4 px-4 text-right font-semibold text-gray-900 dark:text-white">
+                          <td className="py-2 sm:py-4 px-2 sm:px-4 text-right font-semibold text-gray-900 dark:text-white text-xs sm:text-sm">
                             ₦{(item.price * item.quantity)?.toLocaleString()}
                           </td>
                         </motion.tr>
@@ -412,9 +412,9 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
           </motion.div>
         </div>
 
-        <Separator className="my-6" />
+        <Separator className="my-4 sm:my-6" />
         
-        <div className="flex flex-col md:flex-row justify-between text-xs text-gray-500 dark:text-gray-400">
+        <div className="flex flex-col sm:flex-row justify-between text-xs text-gray-500 dark:text-gray-400">
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4" />
             <span>
