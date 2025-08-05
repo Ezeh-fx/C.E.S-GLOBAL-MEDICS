@@ -98,11 +98,7 @@ const Products = () => {
   const handleQuickAddToCart = async (product: Product) => {
     try {
       const firstBrand = product.brands[0];
-      if (!firstBrand) {
-        console.error("No brand available for product");
-        return;
-      }
-
+      if (!firstBrand) return;
       await addToCart(
         {
           id: product._id,
@@ -134,7 +130,7 @@ const Products = () => {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 space-y-4 lg:space-y-0">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
               {category ? category.replace(/-/g, " ") : "Medical Products"}
@@ -146,19 +142,19 @@ const Products = () => {
             </p>
           </div>
 
-          <div className="flex items-center space-x-4">
-            <div className="relative">
+          <div className="w-full flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-end">
+            <div className="w-full sm:w-64 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
               <input
                 type="text"
                 placeholder="Search products..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
               />
             </div>
 
-            <div className="flex items-center space-x-2">
+            <div className="sm:flex gap-2 hidden">
               <motion.button
                 onClick={() => setViewMode("grid")}
                 className={`p-2 rounded ${
@@ -184,7 +180,7 @@ const Products = () => {
             <motion.select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+              className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black w-full sm:w-auto"
             >
               <option value="name">Sort by Name</option>
               <option value="price-low">Price: Low to High</option>
@@ -194,7 +190,6 @@ const Products = () => {
           </div>
         </div>
 
-        {/* Error Display */}
         {error && (
           <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
             <div className="flex items-center justify-between">
@@ -212,7 +207,6 @@ const Products = () => {
           </div>
         )}
 
-        {/* Loading State */}
         {loading ? (
           <div className="text-center py-12">
             <Loader2 className="w-8 h-8 animate-spin mx-auto text-blue-600 mb-4" />
@@ -241,19 +235,21 @@ const Products = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                   className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow ${
-                    viewMode === "list" ? "flex" : ""
+                    viewMode === "list" ? "flex flex-col sm:flex-row" : ""
                   }`}
                 >
                   <div
                     className={`relative ${
-                      viewMode === "list" ? "w-48 flex-shrink-0" : ""
+                      viewMode === "list" ? "sm:w-48 w-full flex-shrink-0" : ""
                     }`}
                   >
                     <img
                       src={image}
                       alt={product.productName}
                       className={`object-cover ${
-                        viewMode === "list" ? "w-full h-full" : "w-full h-48"
+                        viewMode === "list"
+                          ? "w-full h-48 sm:h-56 md:h-64 lg:h-full"
+                          : "w-full h-48"
                       }`}
                     />
                     {firstBrand?.stock === 0 && (
@@ -265,51 +261,57 @@ const Products = () => {
                     )}
                   </div>
 
-                  <div className={`p-4 ${viewMode === "list" ? "flex-1" : ""}`}>
-                    <div className="text-sm text-gray-500 mb-1">
-                      {product.category}
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      {product.productName}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-2">
-                      {firstBrand?.name}
-                    </p>
-
-                    <div className="flex items-center mb-2">
-                      <div className="flex items-center">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className={`w-4 h-4 ${
-                              i < Math.floor(product.rating ?? 0)
-                                ? "text-yellow-400 fill-current"
-                                : "text-gray-300"
-                            }`}
-                          />
-                        ))}
+                  <div
+                    className={`p-4 flex flex-col justify-between ${
+                      viewMode === "list" ? "flex-1" : ""
+                    }`}
+                  >
+                    <div>
+                      <div className="text-sm text-gray-500 mb-1">
+                        {product.category}
                       </div>
-                      <span className="text-sm text-gray-600 ml-2">
-                        ({product.reviews ?? 0})
-                      </span>
-                    </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                        {product.productName}
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-2">
+                        {firstBrand?.name}
+                      </p>
 
-                    <div className="flex items-center justify-between mb-3">
-                      <div>
-                        <span className="text-xl font-bold text-gray-900">
-                          ₦{(firstBrand?.price ?? 0).toLocaleString()}
+                      <div className="flex items-center mb-2">
+                        <div className="flex items-center">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className={`w-4 h-4 ${
+                                i < Math.floor(product.rating ?? 0)
+                                  ? "text-yellow-400 fill-current"
+                                  : "text-gray-300"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                        <span className="text-sm text-gray-600 ml-2">
+                          ({product.reviews ?? 0})
                         </span>
-                        {firstBrand &&
-                          isItemInCart(product._id, firstBrand.name) && (
-                            <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full ml-2">
-                              In Cart (
-                              {getItemQuantity(product._id, firstBrand.name)})
-                            </span>
-                          )}
+                      </div>
+
+                      <div className="flex items-center justify-between mb-3">
+                        <div>
+                          <span className="text-xl font-bold text-gray-900">
+                            ₦{(firstBrand?.price ?? 0).toLocaleString()}
+                          </span>
+                          {firstBrand &&
+                            isItemInCart(product._id, firstBrand.name) && (
+                              <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full ml-2">
+                                In Cart (
+                                {getItemQuantity(product._id, firstBrand.name)})
+                              </span>
+                            )}
+                        </div>
                       </div>
                     </div>
 
-                    <div className="flex space-x-2">
+                    <div className="flex space-x-2 mt-2">
                       <Link
                         to={`/product/${product._id}`}
                         className={`flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center ${
