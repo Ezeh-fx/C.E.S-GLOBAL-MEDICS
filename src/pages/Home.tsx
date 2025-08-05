@@ -52,7 +52,7 @@ const Home = () => {
 
             {/* Search Bar */}
             <div className="flex-1 max-w-lg mx-8 relative search-dropdown-parent">
-              <div className="relative">
+              <div className="relative md:flex hidden">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type="text"
@@ -89,7 +89,9 @@ const Home = () => {
                           }}
                         >
                           <img
-                            src={product.productImages?.[0] || "/placeholder.svg"}
+                            src={
+                              product.productImages?.[0] || "/placeholder.svg"
+                            }
                             alt={product.productName}
                             className="w-12 h-12 object-cover rounded border"
                           />
@@ -158,22 +160,36 @@ const Home = () => {
       {/* Why Choose Us Section */}
       <section className="bg-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="text-2xl font-bold text-center mb-8 text-blue-700">Why Choose Us</h3>
+          <h3 className="text-2xl font-bold text-center mb-8 text-blue-700">
+            Why Choose Us
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-blue-50 p-6 rounded-lg shadow text-center">
               <div className="text-4xl mb-2">🌍</div>
-              <h4 className="font-semibold text-lg mb-2">Global Reach</h4>
-              <p>Supplying quality medical products to professionals worldwide.</p>
+              <h4 className="font-semibold text-lg mb-2 text-black">
+                Global Reach
+              </h4>
+              <p className="text-black">
+                Supplying quality medical products to professionals worldwide.
+              </p>
             </div>
             <div className="bg-blue-50 p-6 rounded-lg shadow text-center">
               <div className="text-4xl mb-2">🔒</div>
-              <h4 className="font-semibold text-lg mb-2">Trusted & Certified</h4>
-              <p>All products are certified and sourced from reputable brands.</p>
+              <h4 className="font-semibold text-lg mb-2 text-black">
+                Trusted & Certified
+              </h4>
+              <p className="text-black">
+                All products are certified and sourced from reputable brands.
+              </p>
             </div>
             <div className="bg-blue-50 p-6 rounded-lg shadow text-center">
               <div className="text-4xl mb-2">🚚</div>
-              <h4 className="font-semibold text-lg mb-2">Fast Delivery</h4>
-              <p>Swift and reliable shipping to your doorstep, anywhere.</p>
+              <h4 className="font-semibold text-lg mb-2 text-black">
+                Fast Delivery
+              </h4>
+              <p className="text-black">
+                Swift and reliable shipping to your doorstep, anywhere.
+              </p>
             </div>
           </div>
         </div>
@@ -188,21 +204,34 @@ const Home = () => {
       {/* Testimonials Section */}
       <section className="bg-gray-50 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="text-2xl font-bold text-center mb-8 text-blue-700">Testimonials</h3>
+          <h3 className="text-2xl font-bold text-center mb-8 text-blue-700">
+            Testimonials
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-lg shadow text-center">
-              <p className="italic mb-4">“C.E.S Global Medics has been our go-to for reliable medical supplies. Fast delivery and great customer service!”</p>
-              <div className="font-semibold">Dr. A. Johnson</div>
-              <div className="text-sm text-gray-500">Lagos, Nigeria</div>
+              <p className="italic mb-4 text-black">
+                “C.E.S Global Medics has been our go-to for reliable medical
+                supplies. Fast delivery and great customer service!”
+              </p>
+              <div className="font-semibold text-black">Dr. A. Johnson</div>
+              <div className="text-sm text-gray-500 ">Lagos, Nigeria</div>
             </div>
             <div className="bg-white p-6 rounded-lg shadow text-center">
-              <p className="italic mb-4">“Excellent range of products and always top quality. Highly recommended.”</p>
-              <div className="font-semibold">Lab Manager, MedLabs</div>
+              <p className="italic mb-4 text-black">
+                “Excellent range of products and always top quality. Highly
+                recommended.”
+              </p>
+              <div className="font-semibold text-black">
+                Lab Manager, MedLabs
+              </div>
               <div className="text-sm text-gray-500">Accra, Ghana</div>
             </div>
             <div className="bg-white p-6 rounded-lg shadow text-center">
-              <p className="italic mb-4">“Ordering was easy and the support team was very helpful. Will buy again!”</p>
-              <div className="font-semibold">Nurse E. Okafor</div>
+              <p className="italic mb-4 text-black">
+                “Ordering was easy and the support team was very helpful. Will
+                buy again!”
+              </p>
+              <div className="font-semibold text-black">Nurse E. Okafor</div>
               <div className="text-sm text-gray-500">Abuja, Nigeria</div>
             </div>
           </div>
